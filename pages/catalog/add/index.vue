@@ -1,0 +1,77 @@
+<template>
+  <v-container fluid fill-height>
+    <v-layout align-center justify-center>
+      <v-flex xs12 sm12 md12>
+        <v-card>
+          <v-toolbar color="primary" dark>
+            <v-toolbar-title>Добавить товар</v-toolbar-title>
+          </v-toolbar>
+          <v-card-text>
+            <v-container grid-list-md>
+              <v-form>
+                <v-layout wrap>
+                  <v-flex xs12>
+                    <v-text-field v-model="item.name" label="Название" />
+                  </v-flex>
+                  <v-flex xs12 md6>
+                    <v-text-field v-model="item.slug" label="ЧПУ" />
+                  </v-flex>
+                  <v-flex xs12 md6>
+                    <v-select
+                      v-model="item.category"
+                      :items="categoriesList"
+                      :rules="[v => !!v || 'Item is required']"
+                      label="Категория"
+                      required
+                    />
+                  </v-flex>
+                  <v-flex xs12>
+                    <v-textarea v-model="item.description" label="Описние" />
+                  </v-flex>
+                  <v-flex xs12>
+                    <v-text-field v-model="item.price" label="Цена" />
+                  </v-flex>
+                  <v-flex xs12 md6>
+                    <v-switch v-model="item.isDiscount" class="ma-2" label="Сделать скидку" />
+                  </v-flex>
+                  <v-flex xs12 md6>
+                    <v-text-field v-model="item.discount" :disabled="!item.isDiscount" label="Цена со скидкой" />
+                  </v-flex>
+                  <v-flex xs12>
+                    <v-file-input v-model="item.preview" label="Превью" />
+                  </v-flex>
+                </v-layout>
+                <v-btn color="success">
+                  Добавить товар
+                </v-btn>
+              </v-form>
+            </v-container>
+          </v-card-text>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      categoriesList: [
+        'Плитка', 'Кирпичи'
+      ],
+      item: {
+        name: '',
+        slug: '',
+        category: null,
+        description: '',
+        price: 0.00,
+        isDiscount: false,
+        discount: 0.00,
+        preview: null,
+        images: []
+      }
+    }
+  }
+}
+</script>
