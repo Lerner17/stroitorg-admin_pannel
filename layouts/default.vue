@@ -68,6 +68,36 @@ export default {
           icon: 'mdi-apps',
           title: 'Категории',
           to: '/categories'
+        },
+        {
+          icon: 'mdi-apps',
+          title: 'main page',
+          to: '/main_page'
+        },
+        {
+          icon: 'mdi-apps',
+          title: 'advantages',
+          to: '/main_page/advantages'
+        },
+        {
+          icon: 'mdi-apps',
+          title: 'employee_cards',
+          to: '/main_page/employee_cards'
+        },
+        {
+          icon: 'mdi-apps',
+          title: 'main_sliders',
+          to: '/main_page/main_sliders'
+        },
+        {
+          icon: 'mdi-apps',
+          title: 'partners',
+          to: '/main_page/partners'
+        },
+        {
+          icon: 'mdi-apps',
+          title: 'projects',
+          to: '/main_page/projects'
         }
       ],
       miniVariant: false,
