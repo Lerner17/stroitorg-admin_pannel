@@ -63,6 +63,11 @@ export default {
           icon: 'mdi-apps',
           title: 'Продукты',
           to: '/catalog'
+        },
+        {
+          icon: 'mdi-apps',
+          title: 'Категории',
+          to: '/categories'
         }
       ],
       miniVariant: false,

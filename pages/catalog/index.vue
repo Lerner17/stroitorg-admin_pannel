@@ -14,7 +14,7 @@
           vertical
         />
         <v-spacer />
-        <v-btn color="primary" dark class="mb-2">
+        <v-btn to="add" append color="primary" dark class="mb-2">
           Новый продукт
         </v-btn>
         <v-dialog v-model="dialog" max-width="500px">
@@ -131,7 +131,7 @@ export default {
 
   methods: {
     initialize () {
-      this.$axios.$get('/products?count=5000').then((data) => {
+      this.$axios.$get('/catalog/products/?count=5000').then((data) => {
         console.log(data)
         this.products = data.results
       })
