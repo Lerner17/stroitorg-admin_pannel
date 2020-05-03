@@ -2,23 +2,20 @@
   <v-data-table
     :headers="headers"
     :items="products"
+    show-select
     sort-by="calories"
     class="elevation-1"
   >
     <template v-slot:top>
       <v-toolbar flat color="white">
-        <v-toolbar-title>Каталог продуктов</v-toolbar-title>
+        <v-toolbar-title>Advantages</v-toolbar-title>
         <v-divider
           class="mx-4"
           inset
           vertical
         />
         <v-spacer />
-<<<<<<< HEAD
-        <v-btn color="primary" dark class="mb-2" nuxt to="/catalog/add">
-=======
         <v-btn to="add" append color="primary" dark class="mb-2">
->>>>>>> 55e3561610eb579610a1ff2171d484dd62d6ff4a
           Новый продукт
         </v-btn>
         <v-dialog v-model="dialog" max-width="500px">
@@ -31,18 +28,6 @@
                 <v-row>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field v-model="editedItem.name" label="Название" />
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.category" label="Категрия" />
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.price" label="Цена" />
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.isDiscount" label="Есть ли скидка" />
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.protein" label="Protein (g)" />
                   </v-col>
                 </v-row>
               </v-container>
@@ -94,9 +79,6 @@ export default {
         value: 'id'
       },
       { text: 'Название', value: 'name' },
-      { text: 'Категория', value: 'category.name' },
-      { text: 'Цена', value: 'price' },
-      { text: 'Есть ли скидка?', value: 'is_discount' },
       { text: 'Actions', value: 'actions', sortable: false }
     ],
     products: [],

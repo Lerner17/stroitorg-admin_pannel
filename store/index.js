@@ -1,6 +1,6 @@
 export const actions = {
   async nuxtServerInit ({ dispatch }, context) {
-    await dispatch('user/setUserOnlyServer', context)
+    await dispatch('user/setUserOnlyServer', context).catch(error => console.error(error))
   }
 }
 
