@@ -57,7 +57,8 @@ export default {
   },
 
   router: {
-    base: process.env.BASE_URL
+    base: '/admin'
+    // base: process.env.BASE_URL
     // middleware: ''
   },
 
