@@ -7,22 +7,7 @@
       fixed
       app
     >
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
+      <BaseMenu />
     </v-navigation-drawer>
     <v-app-bar
       :clipped-left="false"
@@ -46,7 +31,9 @@
 </template>
 
 <script>
+import BaseMenu from '@/components/BaseMenu'
 export default {
+  components: { BaseMenu },
   middleware: 'loggedIn',
   data () {
     return {
@@ -63,6 +50,11 @@ export default {
           icon: 'mdi-apps',
           title: 'Продукты',
           to: '/catalog'
+        },
+        {
+          icon: 'mdi-apps',
+          title: 'Новости',
+          to: '/news'
         }
       ],
       miniVariant: false,

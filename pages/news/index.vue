@@ -1,21 +1,21 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="products"
+    :items="news"
     sort-by="calories"
     class="elevation-1"
   >
     <template v-slot:top>
       <v-toolbar flat color="white">
-        <v-toolbar-title>Каталог продуктов</v-toolbar-title>
+        <v-toolbar-title>Каталог новостей</v-toolbar-title>
         <v-divider
           class="mx-4"
           inset
           vertical
         />
         <v-spacer />
-        <v-btn color="primary" dark class="mb-2" nuxt to="/catalog/add">
-          Новый продукт
+        <v-btn color="primary" dark class="mb-2" nuxt to="/news/add">
+          Добавть новость
         </v-btn>
         <v-dialog v-model="dialog" max-width="500px">
           <v-card>
@@ -89,13 +89,11 @@ export default {
         align: 'start',
         value: 'id'
       },
-      { text: 'Название', value: 'name' },
-      { text: 'Категория', value: 'category.name' },
-      { text: 'Цена', value: 'price' },
-      { text: 'Есть ли скидка?', value: 'is_discount' },
+      { text: 'Заголовок', value: 'title' },
+      { text: 'Опубликовано', value: 'is_active' },
       { text: 'Actions', value: 'actions', sortable: false }
     ],
-    products: [],
+    news: [],
     editedIndex: -1,
     editedItem: {
       name: '',
@@ -131,9 +129,9 @@ export default {
 
   methods: {
     initialize () {
-      this.$axios.$get('/products?count=5000').then((data) => {
+      this.$axios.$get('/news/?count=5000').then((data) => {
         console.log(data)
-        this.products = data.results
+        this.news = data
       })
     },
 
