@@ -24,13 +24,13 @@ export default {
   /*
   ** Global CSS
   */
-  css: [
-  ],
+  css: [],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/axios'
+    '~/plugins/axios',
+    { src: '~/plugins/nuxt-froala.js', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules

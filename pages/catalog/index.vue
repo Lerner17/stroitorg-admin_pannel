@@ -14,50 +14,9 @@
           vertical
         />
         <v-spacer />
-<<<<<<< HEAD
-        <v-btn color="primary" dark class="mb-2" nuxt to="/catalog/add">
-=======
         <v-btn to="add" append color="primary" dark class="mb-2">
->>>>>>> 55e3561610eb579610a1ff2171d484dd62d6ff4a
           Новый продукт
         </v-btn>
-        <v-dialog v-model="dialog" max-width="500px">
-          <v-card>
-            <v-card-title>
-              <span class="headline">{{ formTitle }}</span>
-            </v-card-title>
-            <v-card-text>
-              <v-container>
-                <v-row>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.name" label="Название" />
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.category" label="Категрия" />
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.price" label="Цена" />
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.isDiscount" label="Есть ли скидка" />
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.protein" label="Protein (g)" />
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer />
-              <v-btn color="blue darken-1" text @click="close">
-                Cancel
-              </v-btn>
-              <v-btn color="blue darken-1" text @click="save">
-                Save
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
       </v-toolbar>
     </template>
     <template v-slot:item.actions="{ item }">
@@ -70,6 +29,7 @@
       </v-icon>
       <v-icon
         small
+        color="error"
         @click="deleteItem(item)"
       >
         mdi-delete
@@ -116,40 +76,31 @@ export default {
       protein: 0
     }
   }),
-
-  computed: {
-    formTitle () {
-      return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
-    }
-  },
-
-  watch: {
-    dialog (val) {
-      val || this.close()
-    }
-  },
-
   created () {
     this.initialize()
   },
-
   methods: {
     initialize () {
-      this.$axios.$get('/catalog/products/?count=5000').then((data) => {
-        console.log(data)
+      this.$axios.$get('/products/').then((data) => {
         this.products = data.results
       })
     },
 
     editItem (item) {
-      this.editedIndex = this.desserts.indexOf(item)
-      this.editedItem = Object.assign({}, item)
-      this.dialog = true
+      this.$router.push(`/catalog/edit/${item.id}`)
     },
 
     deleteItem (item) {
-      const index = this.desserts.indexOf(item)
-      confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
+      const index = this.products.indexOf(item)
+      if (confirm('Are you sure you want to delete this item?')) {
+        this.$axios.delete(`/products/${item.id}/`)
+          .then(({ status }) => {
+            if (status === 204) {
+              this.products.splice(index, 1)
+            }
+          })
+          .catch(err => alert(err.message))
+      }
     },
 
     close () {

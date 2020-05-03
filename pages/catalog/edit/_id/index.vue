@@ -13,16 +13,18 @@
                   <v-flex xs12>
                     <v-text-field v-model="item.name" label="Название" />
                   </v-flex>
-                  <v-flex xs12 md6>
+                  <v-flex xs12 md12>
                     <v-text-field v-model="item.slug" label="ЧПУ" />
                   </v-flex>
                   <v-flex xs12 md6>
-                    <v-select
-                      v-model="item.category"
+                    {{ categoriesList }}
+                    <v-treeview
+                      v-model="selection"
                       :items="categoriesList"
-                      :rules="[v => !!v || 'Item is required']"
-                      label="Категория"
-                      required
+                      selection-type="leaf"
+                      selectable
+                      return-object
+                      open-all
                     />
                   </v-flex>
                   <v-flex xs12>
@@ -89,9 +91,8 @@
 export default {
   data () {
     return {
-      categoriesList: [
-        'Плитка', 'Кирпичи'
-      ],
+      selection: [],
+      categoriesList: [],
       item: {
         name: '',
         slug: '',
@@ -100,13 +101,28 @@ export default {
         price: 0.00,
         isDiscount: false,
         discount: 0.00,
-        preview: null,
-        images: []
+        preview: null
       },
       parameters: [],
+      images: [],
       pName: '',
       pValue: ''
     }
+  },
+  mounted () {
+    this.$axios.get(`/products/${this.$route.params.id}/`).then(({ data }) => {
+      this.item.name = data.name
+      this.item.slug = data.slug
+      this.item.description = data.description
+      this.item.price = data.price
+      this.item.new_price = data.new_price
+      this.item.is_discount = data.is_discount
+      this.item.is_discount = data.is_discount
+      this.item.is_new = data.is_new
+      this.parameters = data.parameters
+      this.images = data.images
+    })
+    this.$axios.get('/catalog/categories/').then(({ data }) => { this.categoriesList = data })
   },
   methods: {
     addParameter () {

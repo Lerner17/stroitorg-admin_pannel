@@ -1,16 +1,6 @@
 <template>
   <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="true"
-      fixed
-      app
-    >
-      <BaseMenu />
-    </v-navigation-drawer>
     <v-app-bar
-      :clipped-left="false"
       fixed
       app
       color="primary"
@@ -19,6 +9,26 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>Панель администратора</v-toolbar-title>
     </v-app-bar>
+    <v-navigation-drawer
+      v-model="drawer"
+      app
+    >
+      <template v-slot:prepend>
+        <v-list-item two-line>
+          <v-list-item-avatar>
+            <img src="https://randomuser.me/api/portraits/women/81.jpg">
+          </v-list-item-avatar>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ $store.getters['user/getUser'].user.username }}</v-list-item-title>
+            <v-list-item-subtitle>Выход</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </template>
+
+      <v-divider />
+      <BaseMenu />
+    </v-navigation-drawer>
     <v-content>
       <nuxt />
     </v-content>
