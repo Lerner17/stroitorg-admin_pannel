@@ -18,7 +18,7 @@
       </v-list-item-icon>
       <v-list-item-title>Пользователи</v-list-item-title>
     </v-list-item>
-    <v-list-group prepend-icon="mdi-cart">
+    <v-list-group prepend-icon="mdi-cart" sub-group>
       <template v-slot:activator>
         <v-list-item-title>Каталог</v-list-item-title>
       </template>
