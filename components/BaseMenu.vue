@@ -12,6 +12,12 @@
       </v-list-item-icon>
       <v-list-item-title>Новости</v-list-item-title>
     </v-list-item>
+    <v-list-item link to="/users">
+      <v-list-item-icon>
+        <v-icon>mdi-account</v-icon>
+      </v-list-item-icon>
+      <v-list-item-title>Пользователи</v-list-item-title>
+    </v-list-item>
     <v-list-group prepend-icon="mdi-cart">
       <template v-slot:activator>
         <v-list-item-title>Каталог</v-list-item-title>
@@ -23,5 +29,11 @@
         <v-list-item-title>Категории</v-list-item-title>
       </v-list-item>
     </v-list-group>
+    <v-list-item link to="/orders">
+      <v-list-item-icon>
+        <v-icon>mdi-playlist-edit</v-icon>
+      </v-list-item-icon>
+      <v-list-item-title>Заказы</v-list-item-title>
+    </v-list-item>
   </v-list>
 </template>

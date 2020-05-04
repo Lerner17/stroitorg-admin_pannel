@@ -1,13 +1,13 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="products"
-    sort-by="calories"
+    :items="categories"
+    sort-by="id"
     class="elevation-1"
   >
     <template v-slot:top>
       <v-toolbar flat color="white">
-        <v-toolbar-title>Каталог продуктов</v-toolbar-title>
+        <v-toolbar-title>Каталог категорий</v-toolbar-title>
         <v-divider
           class="mx-4"
           inset
@@ -46,7 +46,6 @@
 <script>
 export default {
   data: () => ({
-    dialog: false,
     headers: [
       {
         text: 'ID',
@@ -54,35 +53,18 @@ export default {
         value: 'id'
       },
       { text: 'Название', value: 'name' },
-      { text: 'Категория', value: 'category.name' },
-      { text: 'Цена', value: 'price' },
-      { text: 'Есть ли скидка?', value: 'is_discount' },
+      { text: 'Родительская категория', value: 'parent' },
       { text: 'Actions', value: 'actions', sortable: false }
     ],
-    products: [],
-    editedIndex: -1,
-    editedItem: {
-      name: '',
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      protein: 0
-    },
-    defaultItem: {
-      name: '',
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      protein: 0
-    }
+    categories: []
   }),
   created () {
     this.initialize()
   },
   methods: {
     initialize () {
-      this.$axios.$get('/products/').then((data) => {
-        this.products = data.results
+      this.$axios.get('/categories/').then((data) => {
+        this.categories = data.results
       })
     },
 
@@ -91,12 +73,12 @@ export default {
     },
 
     deleteItem (item) {
-      const index = this.products.indexOf(item)
+      const index = this.categoryies.indexOf(item)
       if (confirm('Are you sure you want to delete this item?')) {
-        this.$axios.delete(`/products/${item.id}/`)
+        this.$axios.delete(`/categoryies/${item.id}/`)
           .then(({ status }) => {
             if (status === 204) {
-              this.products.splice(index, 1)
+              this.categoryies.splice(index, 1)
             }
           })
           .catch(err => alert(err.message))

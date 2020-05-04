@@ -15,8 +15,8 @@
     >
       <template v-slot:prepend>
         <v-list-item two-line>
-          <v-list-item-avatar>
-            <img src="https://randomuser.me/api/portraits/women/81.jpg">
+          <v-list-item-avatar color="indigo">
+             <span class="white--text headline">{{ $store.getters['user/getUser'].user.username[0].toUpperCase() }}</span>
           </v-list-item-avatar>
 
           <v-list-item-content>

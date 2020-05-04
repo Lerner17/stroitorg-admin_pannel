@@ -8,36 +8,38 @@
           </v-toolbar>
           <v-card-text>
             <v-container grid-list-md>
-              <v-form v-model="valid">
+              <v-form ref="form" v-model="valid">
                 <v-layout wrap>
                   <v-flex xs12>
                     <v-text-field
                       v-model="item.title"
                       label="Заголовок"
                       :rules="[v => !!v || 'Поле не может быть пустым']"
+                      name="title"
                     />
                   </v-flex>
                   <v-flex xs12>
-                    <v-text-field v-model="item.slug" label="ЧПУ" />
+                    <v-text-field v-model="item.slug" label="ЧПУ" name="slug" />
                   </v-flex>
                   <v-flex xs12>
                     <v-textarea
                       v-model="item.description"
                       label="Описание"
                       :rules="[v => !!v || 'Поле не может быть пустым']"
+                      name="description"
                     />
                   </v-flex>
                   <no-ssr>
-                    <froala v-model="item.content" :tag="'textarea'" :config="config" />
+                    <froala v-model="item.content" :tag="'textarea'" :config="config" name="content" />
                   </no-ssr>
                   <v-flex xs12>
-                    <v-file-input v-model="item.image" label="Превью" />
+                    <v-file-input name="image" label="Превью" />
                   </v-flex>
                 </v-layout>
                 <v-flex>
-                  <v-checkbox v-model="item.is_active" label="Опубликовано?" />
+                  <v-checkbox v-model="item.is_active" label="Опубликовано?" name="is_active" />
                 </v-flex>
-                <v-btn color="success" :disabled="!valid" @click="postModel()">
+                <v-btn color="success" :disabled="!valid" @click="postModel">
                   Сохранить
                 </v-btn>
               </v-form>
@@ -63,6 +65,7 @@ export default {
         is_active: true,
         image: null
       },
+      preview: null,
       config: {
         placeholderText: 'Контент',
         charCounterCount: false,
@@ -73,23 +76,12 @@ export default {
   },
   methods: {
     postModel () {
-      const news = {
-        title: this.item.title,
-        description: this.item.description,
-        content: this.item.content,
-        slug: this.item.slug,
-        is_active: this.item.is_active
-      }
-      this.$axios.post('/news/', news).then(({ status }) => {
-        console.log(status)
-        if (status === 201) {
-          this.$router.push('/news')
-          alert('Новость успшно создана')
-        }
+      const formData = new FormData(this.$refs.form.$el)
+      this.$axios.$post('/news/', formData).then(() => {
+        alert('Новость успшно создана')
+        this.$router.push('/news')
       })
-        .catch((err) => {
-          alert(err.message)
-        })
+        .catch(err => alert(err))
     }
   }
 }

@@ -1,92 +1,249 @@
 <template>
-  <v-layout
-    column
-    justify-center
-    align-center
-  >
-    <v-flex
-      xs12
-      sm8
-      md6
-    >
-      <div class="text-center">
-        <logo />
-        <vuetify-logo />
-      </div>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
+  <v-layout column>
+    <v-flex xs12>
+      <v-layout>
+        <v-flex xs12>
+          <v-card class="ma-5 pa-5">
+            <v-card-title>Настройки контактов</v-card-title>
+            <v-card-text>
+              <v-form>
+                <v-text-field prepend-icon="mdi-instagram" label="Ссылка на Instagram" />
+                <v-text-field prepend-icon="mdi-facebook" label="Ссылка на Facebook" />
+                <v-text-field prepend-icon="mdi-twitter" label="Ссылка на Twitter" />
+                <v-text-field prepend-icon="mdi-vk" label="Ссылка на VK" />
+                <v-text-field prepend-icon="mdi-phone" label="Номер телефона" />
+                <v-text-field prepend-icon="mdi-at" label="Email адрес" />
+                <v-text-field prepend-icon="mdi-map-marker" label="Адрес" />
+              </v-form>
+              <v-btn color="success">
+                Сохранить
+              </v-btn>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </v-flex>
+    <v-flex xs12>
+      <v-card class="ma-4">
+        <v-card-title>Слайдер</v-card-title>
         <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
+          <v-data-table
+            :headers="slider.headers"
+            :items="slider.items"
+            sort-by="id"
+            class="elevation-1"
           >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-          >
-            Nuxt GitHub
-          </a>
+            <template v-slot:top>
+              <v-toolbar flat color="white">
+                <v-spacer />
+                <v-btn to="add" append color="primary" dark class="mb-2">
+                  Добавить слайд
+                </v-btn>
+              </v-toolbar>
+            </template>
+            <template v-slot:no-data>
+              <v-btn color="primary" @click="initialize">
+                Reset
+              </v-btn>
+            </template>
+          </v-data-table>
         </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
+      </v-card>
+      <v-card class="ma-4">
+        <v-card-title>Приемущества</v-card-title>
+        <v-card-text>
+          <v-data-table
+            :headers="advantages.headers"
+            :items="advantages.items"
+            sort-by="id"
+            class="elevation-1"
           >
-            Continue
-          </v-btn>
-        </v-card-actions>
+            <template v-slot:top>
+              <v-toolbar flat color="white">
+                <v-spacer />
+                <v-btn to="add" append color="primary" dark class="mb-2">
+                  Добавить карточку
+                </v-btn>
+              </v-toolbar>
+            </template>
+            <template v-slot:no-data>
+              <v-btn color="primary" @click="initialize">
+                Reset
+              </v-btn>
+            </template>
+          </v-data-table>
+        </v-card-text>
+      </v-card>
+      <v-card class="ma-4">
+        <v-card-title>Сотрудники</v-card-title>
+        <v-card-text>
+          <v-data-table
+            :headers="employee.headers"
+            :items="employee.items"
+            sort-by="id"
+            class="elevation-1"
+          >
+            <template v-slot:top>
+              <v-toolbar flat color="white">
+                <v-spacer />
+                <v-btn to="add" append color="primary" dark class="mb-2">
+                  Новый сотрудник
+                </v-btn>
+              </v-toolbar>
+            </template>
+            <template v-slot:no-data>
+              <v-btn color="primary" @click="initialize">
+                Reset
+              </v-btn>
+            </template>
+          </v-data-table>
+        </v-card-text>
+      </v-card>
+      <v-card class="ma-4">
+        <v-card-title>Слайдер партнеры</v-card-title>
+        <v-card-text>
+          <v-data-table
+            :headers="partners.headers"
+            :items="partners.items"
+            sort-by="id"
+            class="elevation-1"
+          >
+            <template v-slot:top>
+              <v-toolbar flat color="white">
+                <v-spacer />
+                <v-btn to="add" append color="primary" dark class="mb-2">
+                  Новый партнер
+                </v-btn>
+              </v-toolbar>
+            </template>
+            <template v-slot:no-data>
+              <v-btn color="primary" @click="initialize">
+                Reset
+              </v-btn>
+            </template>
+          </v-data-table>
+        </v-card-text>
+      </v-card>
+      <v-card class="ma-4">
+        <v-card-title>Проекты</v-card-title>
+        <v-card-text>
+          <v-data-table
+            :headers="projects.headers"
+            :items="projects.items"
+            sort-by="id"
+            class="elevation-1"
+          >
+            <template v-slot:top>
+              <v-toolbar flat color="white">
+                <v-spacer />
+                <v-btn to="add" append color="primary" dark class="mb-2">
+                  Новый проект
+                </v-btn>
+              </v-toolbar>
+            </template>
+            <template v-slot:no-data>
+              <v-btn color="primary" @click="initialize">
+                Reset
+              </v-btn>
+            </template>
+          </v-data-table>
+        </v-card-text>
       </v-card>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
-
 export default {
   components: {
-    Logo,
-    VuetifyLogo
+  },
+  data () {
+    return {
+      employee: {
+        headers: [
+          {
+            text: 'ID',
+            align: 'start',
+            value: 'id'
+          },
+          {
+            text: 'Имя',
+            value: 'first_name'
+          },
+          {
+            text: 'Фамилия',
+            value: 'last_name'
+          },
+          {
+            text: 'Должность',
+            value: 'position'
+          }
+        ],
+        items: []
+      },
+      partners: {
+        headers: [
+          {
+            text: 'ID',
+            align: 'start',
+            value: 'id'
+          },
+          { text: 'Название', value: 'name' }
+        ],
+        items: []
+      },
+      advantages: {
+        headers: [
+          {
+            text: 'ID',
+            align: 'start',
+            value: 'id'
+          },
+          {
+            text: 'Текст',
+            value: 'title'
+          }
+        ],
+        items: []
+      },
+      slider: {
+        headers: [
+          {
+            text: 'ID',
+            align: 'start',
+            value: 'id'
+          },
+          { text: 'Заголовок', value: 'title' },
+          { text: 'Текст', value: 'text' },
+          { text: 'Ссылка', value: 'url' }
+        ],
+        items: []
+      },
+      projects: {
+        headers: [
+          {
+            text: 'ID',
+            align: 'start',
+            value: 'id'
+          },
+          { text: 'Заголовок', value: 'title' },
+          { text: 'Описание', value: 'description' }
+        ],
+        items: []
+      }
+    }
+  },
+  created () {
+    this.initialize()
+  },
+  methods: {
+    initialize () {
+      this.$axios.$get('/employee/').then((data) => { this.employee.items = data })
+      this.$axios.$get('/partners/').then((data) => { this.partners.items = data })
+      this.$axios.$get('/advantages/').then((data) => { this.advantages.items = data })
+      this.$axios.$get('/main_slider/').then((data) => { this.slider.items = data })
+      this.$axios.$get('/projects/').then((data) => { this.projects.items = data })
+    }
   }
 }
 </script>

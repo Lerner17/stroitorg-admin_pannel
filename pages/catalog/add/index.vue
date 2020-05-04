@@ -8,13 +8,13 @@
           </v-toolbar>
           <v-card-text>
             <v-container grid-list-md>
-              <v-form>
+              <v-form ref="form">
                 <v-layout wrap>
                   <v-flex xs12>
-                    <v-text-field v-model="item.name" label="Название" />
+                    <v-text-field name="name" label="Название" />
                   </v-flex>
                   <v-flex xs12 md6>
-                    <v-text-field v-model="item.slug" label="ЧПУ" />
+                    <v-text-field name="slug" label="ЧПУ" />
                   </v-flex>
                   <v-flex xs12 md6>
                     <v-select
