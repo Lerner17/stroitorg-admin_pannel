@@ -37,7 +37,7 @@
     </template>
     <template v-slot:no-data>
       <v-btn color="primary" @click="initialize">
-        Reset
+        Повторить
       </v-btn>
     </template>
   </v-data-table>
@@ -57,7 +57,7 @@ export default {
       { text: 'Категория', value: 'category.name' },
       { text: 'Цена', value: 'price' },
       { text: 'Есть ли скидка?', value: 'is_discount' },
-      { text: 'Actions', value: 'actions', sortable: false }
+      { text: 'Действия', value: 'actions', sortable: false }
     ],
     products: [],
     editedIndex: -1,

@@ -62,7 +62,7 @@
     </template>
     <template v-slot:no-data>
       <v-btn color="primary" @click="initialize">
-        Reset
+        Повторить
       </v-btn>
     </template>
   </v-data-table>
@@ -82,7 +82,7 @@ export default {
       { text: 'Фамилия', value: 'lastName' },
       { text: 'Позиция', value: 'position' },
       { text: 'email', value: 'email' },
-      { text: 'Actions', value: 'actions', sortable: false }
+      { text: 'Действия', value: 'actions', sortable: false }
     ],
     products: [],
     editedIndex: -1,

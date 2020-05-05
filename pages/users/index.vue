@@ -25,7 +25,7 @@
     </template>
     <template v-slot:no-data>
       <v-btn color="primary" @click="initialize">
-        Reset
+        Повторить
       </v-btn>
     </template>
     <template v-slot:item.actions="{ item }">
@@ -46,7 +46,7 @@
     </template>
     <template v-slot:no-data>
       <v-btn color="primary" @click="initialize">
-        Reset
+        Повторить
       </v-btn>
     </template>
   </v-data-table>
@@ -67,7 +67,7 @@ export default {
       { text: 'Фамилия', value: 'last_name' },
       { text: 'Email', value: 'Почта' },
       { text: 'Супер пользователь', value: 'is_superuser' },
-      { text: 'Actions', value: 'actions', sortable: false }
+      { text: 'Действия', value: 'actions', sortable: false }
     ],
     users: []
   }),
