@@ -122,7 +122,7 @@ export default {
       this.parameters = data.parameters
       this.images = data.images
     })
-    this.$axios.get('/catalog/categories/').then(({ data }) => { this.categoriesList = data })
+    this.$axios.get('/categories/').then(({ data }) => { this.categoriesList = data })
   },
   methods: {
     addParameter () {

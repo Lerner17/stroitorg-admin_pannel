@@ -25,7 +25,7 @@
       <v-list-item link to="/catalog">
         <v-list-item-title>Товары</v-list-item-title>
       </v-list-item>
-      <v-list-item>
+      <v-list-item link to="/catalog/categories">
         <v-list-item-title>Категории</v-list-item-title>
       </v-list-item>
     </v-list-group>

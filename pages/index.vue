@@ -7,13 +7,13 @@
             <v-card-title>Настройки контактов</v-card-title>
             <v-card-text>
               <v-form>
-                <v-text-field prepend-icon="mdi-instagram" label="Ссылка на Instagram" />
-                <v-text-field prepend-icon="mdi-facebook" label="Ссылка на Facebook" />
-                <v-text-field prepend-icon="mdi-twitter" label="Ссылка на Twitter" />
-                <v-text-field prepend-icon="mdi-vk" label="Ссылка на VK" />
-                <v-text-field prepend-icon="mdi-phone" label="Номер телефона" />
-                <v-text-field prepend-icon="mdi-at" label="Email адрес" />
-                <v-text-field prepend-icon="mdi-map-marker" label="Адрес" />
+                <v-text-field v-model="contacts.instagram_url" prepend-icon="mdi-instagram" label="Ссылка на Instagram" />
+                <v-text-field v-model="contacts.fb_url" prepend-icon="mdi-facebook" label="Ссылка на Facebook" />
+                <v-text-field v-model="contacts.twitter_url" prepend-icon="mdi-twitter" label="Ссылка на Twitter" />
+                <v-text-field v-model="contacts.vk_url" prepend-icon="mdi-vk" label="Ссылка на VK" />
+                <v-text-field v-model="contacts.phone" prepend-icon="mdi-phone" label="Номер телефона" />
+                <v-text-field v-model="contacts.email" prepend-icon="mdi-at" label="Email адрес" />
+                <v-text-field v-model="contacts.address" prepend-icon="mdi-map-marker" label="Адрес" />
               </v-form>
               <v-btn color="success">
                 Сохранить
@@ -159,6 +159,7 @@ export default {
   },
   data () {
     return {
+      contacts: [],
       employee: {
         headers: [
           {
@@ -243,6 +244,7 @@ export default {
       this.$axios.$get('/advantages/').then((data) => { this.advantages.items = data })
       this.$axios.$get('/main_slider/').then((data) => { this.slider.items = data })
       this.$axios.$get('/projects/').then((data) => { this.projects.items = data })
+      this.$axios.$get('/contacts/').then((data) => { this.contacts = data })
     }
   }
 }

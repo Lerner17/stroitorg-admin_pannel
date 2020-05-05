@@ -1,6 +1,5 @@
 <template>
   <div class="">
-    <v-treeview :items="categoriesList" hoverable open-on-click></v-treeview>
     <v-data-table
       :headers="headers"
       :items="categoriesList"
@@ -119,7 +118,7 @@ export default {
 
   methods: {
     initialize () {
-      this.$axios.$get('/catalog/categories/?count=5000')
+      this.$axios.$get('/categories/')
         .then((data) => {
           console.log(data)
           this.categoriesList = data

@@ -15,7 +15,7 @@
         />
         <v-spacer />
         <v-btn to="add" append color="primary" dark class="mb-2">
-          Новый продукт
+          Новая категория
         </v-btn>
       </v-toolbar>
     </template>
@@ -63,8 +63,9 @@ export default {
   },
   methods: {
     initialize () {
-      this.$axios.get('/categories/').then((data) => {
-        this.categories = data.results
+      this.$axios.$get('/categories/').then((data) => {
+        console.log(data)
+        this.categories = data
       })
     },
 
