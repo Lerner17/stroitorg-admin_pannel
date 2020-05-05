@@ -36,7 +36,7 @@
             <template v-slot:top>
               <v-toolbar flat color="white">
                 <v-spacer />
-                <v-btn to="add" append color="primary" dark class="mb-2">
+                <v-btn to="/slider/add" append color="primary" dark class="mb-2">
                   Добавить слайд
                 </v-btn>
               </v-toolbar>
@@ -50,7 +50,7 @@
         </v-card-text>
       </v-card>
       <v-card class="ma-4">
-        <v-card-title>Приемущества</v-card-title>
+        <v-card-title>Преимущества</v-card-title>
         <v-card-text>
           <v-data-table
             :headers="advantages.headers"
@@ -61,7 +61,7 @@
             <template v-slot:top>
               <v-toolbar flat color="white">
                 <v-spacer />
-                <v-btn to="add" append color="primary" dark class="mb-2">
+                <v-btn to="/advantages/add" append color="primary" dark class="mb-2">
                   Добавить карточку
                 </v-btn>
               </v-toolbar>
@@ -86,7 +86,7 @@
             <template v-slot:top>
               <v-toolbar flat color="white">
                 <v-spacer />
-                <v-btn to="add" append color="primary" dark class="mb-2">
+                <v-btn to="/employee/add" append color="primary" dark class="mb-2">
                   Новый сотрудник
                 </v-btn>
               </v-toolbar>
@@ -111,7 +111,7 @@
             <template v-slot:top>
               <v-toolbar flat color="white">
                 <v-spacer />
-                <v-btn to="add" append color="primary" dark class="mb-2">
+                <v-btn to="/partners/add" append color="primary" dark class="mb-2">
                   Новый партнер
                 </v-btn>
               </v-toolbar>
@@ -136,7 +136,7 @@
             <template v-slot:top>
               <v-toolbar flat color="white">
                 <v-spacer />
-                <v-btn to="add" append color="primary" dark class="mb-2">
+                <v-btn to="/projects/add" append color="primary" dark class="mb-2">
                   Новый проект
                 </v-btn>
               </v-toolbar>
