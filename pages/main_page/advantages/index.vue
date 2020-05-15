@@ -78,7 +78,7 @@ export default {
         align: 'start',
         value: 'id'
       },
-      { text: 'Название', value: 'name' },
+      { text: 'Название', value: 'title' },
       { text: 'Действия', value: 'actions', sortable: false }
     ],
     products: [],
