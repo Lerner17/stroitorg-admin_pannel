@@ -18,7 +18,7 @@
                     />
                   </v-flex>
                   <v-flex xs12>
-                    <v-textarea name="descrition" label="Описание" :rules="[v => !!v || 'Поле не может быть пустым']" />
+                    <v-textarea name="description" label="Описание" :rules="[v => !!v || 'Поле не может быть пустым']" />
                   </v-flex>
                 </v-layout>
                 <v-btn color="success" :disabled="!valid" @click="postModel">
